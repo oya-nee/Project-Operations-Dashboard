@@ -1,4 +1,4 @@
-﻿namespace ProjectOperationsDashboard.Models
+﻿namespace ProjectOperationsDashboard.Core.Models
 {
     public class SmsChannel : NotificationChannelBase
     {
@@ -6,7 +6,8 @@
         public override void Send(NotificationMessage<string> msg)
         {
             base.Send(msg);
-            Console.WriteLine($"[SMS] Sending to On-call Leader: {msg.Content}");
+            Console.WriteLine($"[SMS] Sending to On-call Leader:{msg.Title} {msg.Content}");
+            //Console.WriteLine($"[SMS] To {msg.Recipient}: {msg.Content}");
         }
     }
 

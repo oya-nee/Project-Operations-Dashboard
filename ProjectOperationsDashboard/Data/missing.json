@@ -1,0 +1,5 @@
+{
+  "ServerEndpoint": "localhost",
+  "Port": 8080,
+  "HeartbeatInterval": 30
+}
