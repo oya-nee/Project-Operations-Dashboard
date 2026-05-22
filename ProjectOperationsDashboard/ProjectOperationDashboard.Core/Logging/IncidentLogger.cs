@@ -24,10 +24,32 @@ namespace ProjectOperationsDashboard.Core.Logging
             }
         }
 
+        //bonus rolatelog
+        private void RotateIfNeeded(long maxBytes = 2048)  // <- 2KB 
+        {
+            try
+            {
+                FileInfo fileInfo = new FileInfo(_logFilePath);
+                if (fileInfo.Exists && fileInfo.Length > maxBytes)
+                {
+                    string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                    string rotatedPath = _logFilePath.Replace(".log", $"_{timestamp}.log");
+                    File.Move(_logFilePath, rotatedPath);
+                    Console.WriteLine($"[Log] File rotated to: {rotatedPath}");
+                }
+            }
+            catch (Exception ex)
+            {
+                // ถ้า rotate ไม่ได้ ให้เขียนต่อในไฟล์เดิมได้ตามโจทย์
+                Console.WriteLine($"[Warning] Could not rotate log: {ex.Message}");
+            }
+        }
+
         public async Task WriteAsync(IncidentLog entry)
         {
             try
             {
+                RotateIfNeeded();// เรียกใช้ rotate
                 using (StreamWriter sw = new StreamWriter(_logFilePath, append: true))
                 {
                     await sw.WriteLineAsync($"{entry.Timestamp:yyyy-MM-dd HH:mm:sszzz}  [{entry.Severity}] | {entry.Message} | Node: {entry.NodeId}");

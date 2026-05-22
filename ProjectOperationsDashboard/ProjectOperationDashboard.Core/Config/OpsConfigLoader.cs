@@ -13,7 +13,7 @@ namespace ProjectOperationsDashboard.Core.Config
             {
                 if (!File.Exists(filePath))
                 {
-                    Console.WriteLine($"[Config] File not found: {filePath}. Generating default...");
+                    Console.WriteLine($"[Config] File not found: {filePath}. Generating default");
                     await SaveDefaultAsync(filePath);
                     return GetDefaultConfig();
                 }
@@ -52,7 +52,11 @@ namespace ProjectOperationsDashboard.Core.Config
                 string? folder = Path.GetDirectoryName(filePath);
                 if (!string.IsNullOrEmpty(folder)) Directory.CreateDirectory(folder);
 
-                await File.WriteAllTextAsync(filePath, json);
+                //await File.WriteAllTextAsync(filePath, json);
+                using (StreamWriter sw = new StreamWriter(filePath))
+                {
+                    await sw.WriteAsync(json);
+                }
                 Console.WriteLine($"[Config] Default config saved to: {filePath}");
             }
             catch (Exception ex)

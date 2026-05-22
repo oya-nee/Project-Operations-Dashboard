@@ -70,6 +70,13 @@ priorityService.EnqueueMessage(new NotificationMessage<string> { Title = "[INFO]
 priorityService.EnqueueMessage(new NotificationMessage<string> { Title = "[WARNING] Memory High", Content = "Memory High" });
 priorityService.EnqueueMessage(new NotificationMessage<string> { Title = "[CRITICAL] Srver Down", Content = "Srver Down" });
 
+priorityService.EnqueueMessage(new NotificationMessage<string> { Title = "[CRITICAL] Srver Down1", Content = "Srver Down1" });
+priorityService.EnqueueMessage(new NotificationMessage<string> { Title = "[CRITICAL] Srver Down2", Content = "Srver Down2" });
+priorityService.EnqueueMessage(new NotificationMessage<string> { Title = "[CRITICAL] Srver Down3", Content = "Srver Down3" });
+priorityService.EnqueueMessage(new NotificationMessage<string> { Title = "[CRITICAL] Srver Down4", Content = "Srver Down4" });
+priorityService.EnqueueMessage(new NotificationMessage<string> { Title = "[CRITICAL] Srver Down5", Content = "Srver Down5" });
+
+
 //เอาไว้เช็คแจ้งเตือนไม่เหมือนกันก็จะส่งอยู่ดี
 //priorityService.EnqueueMessage(new NotificationMessage<string> { Title = "[INFO] Server check OK", Content = "Server check OK" }); 
 //priorityService.EnqueueMessage(new NotificationMessage<string> { Title = "[CRITICAL] CPU Overheat", Content = "CPU Overheat" });
